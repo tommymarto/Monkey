@@ -1,3 +1,8 @@
+// package evaluator
+// the evaluator has the task to traverse the AST to evaluate expressions.
+// the recursive Eval function before gives meaning to child nodes, then evaluate the outer expression/statement
+// for identifier binding the object.Environment is being used to store info
+
 package evaluator
 
 import (
