@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/tommymarto/Monkey)](https://goreportcard.com/report/github.com/tommymarto/Monkey) [![Build Status](https://dev.azure.com/tommymarto/Monkey/_apis/build/status/Monkey-Go%20(preview)-CI?repoName=tommymarto%2FMonkey&branchName=master)](https://dev.azure.com/tommymarto/Monkey/_build/latest?definitionId=2&repoName=tommymarto%2FMonkey&branchName=master)
+
 # Monkey
 
 ![The official Monkey logo](https://interpreterbook.com/img/monkey_logo-d5171d15.png)
