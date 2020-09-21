@@ -77,7 +77,7 @@ unless(10 > 5, puts("not greater"), puts("greater")); // Output : "greater"
 ```
 
 ## The purpose of this project
-This implementation of Monkey is for solely didactic purposes. The implementation makes heavy use of already existing Go objects for language-internal representation without any partitolar attention paid for optimization. The lexer ignores most of basic things like line numbers, the parser and the evaluator could be much more extended and the syntactic macro system severly lacks in error handling. With that said Monkey is easily extensible and Go garbage collector handles Monkey's garbage too!  
+This implementation of Monkey is for solely didactic purposes. The implementation makes heavy use of already existing Go objects for language-internal representation without any particular attention paid for optimization. The lexer ignores most of basic things like line numbers, the parser and the evaluator could be much more extended and the syntactic macro system severly lacks in error handling. With that said Monkey is easily extendable and Go garbage collector handles Monkey's garbage too!  
 
 ### Try Monkey in the REPL
 Simply type `go run .\main.go` *
