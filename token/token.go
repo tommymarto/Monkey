@@ -1,7 +1,11 @@
+// package token
+// Monkey token specification and keyword definition
+
 package token
 
 type TokenType string
 
+// Token : token structure handles the most basics info about a token produced by the lexer
 type Token struct {
 	Type    TokenType
 	Literal string

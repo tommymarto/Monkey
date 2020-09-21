@@ -1,3 +1,6 @@
+// package object
+// defines internal object representation for Monkey objects
+
 package object
 
 import (

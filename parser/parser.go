@@ -1,3 +1,8 @@
+// package parser
+// The parser has the task to give meaning to the stream of tokens given by the lexer
+// it's based on the top-down Pratt method which makes use of prefix/infix functions and
+// heavily relies on operator precedences to parse correct expressions
+
 package parser
 
 import (

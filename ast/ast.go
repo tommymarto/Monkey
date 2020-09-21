@@ -1,3 +1,6 @@
+// package ast
+// define AST nodes that will be combined by the parser
+
 package ast
 
 import (

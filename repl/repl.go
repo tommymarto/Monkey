@@ -1,3 +1,6 @@
+// package repl
+// basic Read Evaluate Print Loop. Handles one line inputs and prints its output in the terminal
+
 package repl
 
 import (

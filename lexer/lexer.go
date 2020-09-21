@@ -1,3 +1,6 @@
+// package lexer
+// Lexer has the task to analyze the input character stream to produce an output token stream with enriched informations
+
 package lexer
 
 import "monkey/token"
