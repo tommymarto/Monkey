@@ -1,4 +1,4 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/tommymarto/Monkey)](https://goreportcard.com/report/github.com/tommymarto/Monkey) [![Build Status](https://dev.azure.com/tommymarto/Monkey/_apis/build/status/Monkey-Go%20(preview)-CI?repoName=tommymarto%2FMonkey&branchName=master)](https://dev.azure.com/tommymarto/Monkey/_build/latest?definitionId=2&repoName=tommymarto%2FMonkey&branchName=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/tommymarto/Monkey)](https://goreportcard.com/report/github.com/tommymarto/Monkey) [![Build Status](https://dev.azure.com/tommymarto/Monkey/_apis/build/status/Monkey-Go%20(preview)-CI?repoName=tommymarto%2FMonkey&branchName=master)](https://dev.azure.com/tommymarto/Monkey/_build/latest?definitionId=2&repoName=tommymarto%2FMonkey&branchName=master) [![Coverage Status](https://coveralls.io/repos/github/tommymarto/Monkey/badge.svg?branch=master)](https://coveralls.io/github/tommymarto/Monkey?branch=master)
 
 # Monkey
 
