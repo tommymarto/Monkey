@@ -8,16 +8,61 @@ import (
 	"fmt"
 	"io"
 	"monkey/compiler"
+	"monkey/evaluator"
 	"monkey/lexer"
 	"monkey/object"
 	"monkey/parser"
 	"monkey/vm"
+	"time"
 )
 
 const PROMPT = ">> "
 
-// Start : start repl
-func Start(in io.Reader, out io.Writer) {
+func StartEval(in io.Reader, out io.Writer) {
+	io.WriteString(out, "Running engine=eval\n")
+
+	scanner := bufio.NewScanner(in)
+
+	env := object.NewEnvironment()
+	macroEnv := object.NewEnvironment()
+
+	for {
+		fmt.Printf(PROMPT)
+		scanned := scanner.Scan()
+		if !scanned {
+			return
+		}
+
+		line := scanner.Text()
+		l := lexer.New(line)
+		p := parser.New(l)
+
+		program := p.ParseProgram()
+		if len(p.Errors()) != 0 {
+			printParseErrors(out, p.Errors())
+			continue
+		}
+
+		evaluator.DefineMacros(program, macroEnv)
+		expanded := evaluator.ExpandMacros(program, macroEnv)
+
+		start := time.Now()
+		result := evaluator.Eval(expanded, env)
+		duration := time.Since(start)
+
+		if result == nil {
+			continue
+		}
+
+		io.WriteString(out, result.Inspect())
+		io.WriteString(out, "\t\t")
+		io.WriteString(out, duration.String())
+		io.WriteString(out, "\n")
+	}
+}
+
+func StartVM(in io.Reader, out io.Writer) {
+	io.WriteString(out, "Running engine=vm\n")
 	scanner := bufio.NewScanner(in)
 
 	constants := []object.Object{}
@@ -56,14 +101,23 @@ func Start(in io.Reader, out io.Writer) {
 		constants = code.Constants
 
 		machine := vm.NewWithGlobalsStore(code, globals)
+
+		start := time.Now()
 		err = machine.Run()
+		duration := time.Since(start)
 		if err != nil {
 			fmt.Fprintf(out, "Whoops! Executing bytecode failed:\n%s\n", err)
 			continue
 		}
 
-		lastPopped := machine.LastPoppedStackElem()
-		io.WriteString(out, lastPopped.Inspect())
+		result := machine.LastPoppedStackElem()
+		if result == nil {
+			continue
+		}
+
+		io.WriteString(out, result.Inspect())
+		io.WriteString(out, "\t\t")
+		io.WriteString(out, duration.String())
 		io.WriteString(out, "\n")
 	}
 }
