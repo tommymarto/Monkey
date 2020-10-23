@@ -35,8 +35,8 @@ func TestNextToken(t *testing.T) {
 	`
 
 	tests := []struct {
-		expextedType    token.TokenType
-		expextedLiteral string
+		expectedType    token.TokenType
+		expectedLiteral string
 	}{
 		{token.LET, "let"},
 		{token.IDENT, "five"},
@@ -145,12 +145,12 @@ func TestNextToken(t *testing.T) {
 	for i, tt := range tests {
 		tok := l.NextToken()
 
-		if tok.Type != tt.expextedType {
-			t.Fatalf("tests[%d] - tokentype wrong. expected=%q, got=%q", i, tt.expextedType, tok.Type)
+		if tok.Type != tt.expectedType {
+			t.Fatalf("tests[%d] - tokentype wrong. expected=%q, got=%q", i, tt.expectedType, tok.Type)
 		}
 
-		if tok.Literal != tt.expextedLiteral {
-			t.Fatalf("tests[%d] - literal wrong. expected=%q, got=%q", i, tt.expextedLiteral, tok.Literal)
+		if tok.Literal != tt.expectedLiteral {
+			t.Fatalf("tests[%d] - literal wrong. expected=%q, got=%q", i, tt.expectedLiteral, tok.Literal)
 		}
 	}
 }

@@ -363,7 +363,7 @@ func TestStringConcatenation(t *testing.T) {
 	}
 
 	if str.Value != "Hello World!" {
-		t.Errorf("String has wrond value. expected=%q, got=%q", "Hello World!", str.Value)
+		t.Errorf("String has wrong value. expected=%q, got=%q", "Hello World!", str.Value)
 	}
 }
 

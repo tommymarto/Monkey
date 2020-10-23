@@ -7,10 +7,11 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"monkey/evaluator"
+	"monkey/compiler"
 	"monkey/lexer"
 	"monkey/object"
 	"monkey/parser"
+	"monkey/vm"
 )
 
 const PROMPT = ">> "
@@ -18,8 +19,14 @@ const PROMPT = ">> "
 // Start : start repl
 func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
-	env := object.NewEnvironment()
-	macroEnv := object.NewEnvironment()
+
+	constants := []object.Object{}
+	globals := make([]object.Object, vm.GlobalsSize)
+	symbolTable := compiler.NewSymbolTable()
+
+	for i, v := range object.Builtins {
+		symbolTable.DefineBuiltin(i, v.Name)
+	}
 
 	for {
 		fmt.Printf(PROMPT)
@@ -38,14 +45,26 @@ func Start(in io.Reader, out io.Writer) {
 			continue
 		}
 
-		evaluator.DefineMacros(program, macroEnv)
-		expanded := evaluator.ExpandMacros(program, macroEnv)
-
-		evaluated := evaluator.Eval(expanded, env)
-		if evaluated != nil {
-			io.WriteString(out, evaluated.Inspect())
-			io.WriteString(out, "\n")
+		comp := compiler.NewWithState(symbolTable, constants)
+		err := comp.Compile(program)
+		if err != nil {
+			fmt.Fprintf(out, "Whoops! Compilation failed:\n%s\n", err)
+			continue
 		}
+
+		code := comp.Bytecode()
+		constants = code.Constants
+
+		machine := vm.NewWithGlobalsStore(code, globals)
+		err = machine.Run()
+		if err != nil {
+			fmt.Fprintf(out, "Whoops! Executing bytecode failed:\n%s\n", err)
+			continue
+		}
+
+		lastPopped := machine.LastPoppedStackElem()
+		io.WriteString(out, lastPopped.Inspect())
+		io.WriteString(out, "\n")
 	}
 }
 

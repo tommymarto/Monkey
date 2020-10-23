@@ -12,7 +12,7 @@ func TestDefineMacros(t *testing.T) {
 	input := `
 		let number = 1;
 		let function = fn(x, y) { x + y };
-		let mymacro = macro(x, y) { x + y };
+		let myMacro = macro(x, y) { x + y };
 	`
 
 	env := object.NewEnvironment()
@@ -33,7 +33,7 @@ func TestDefineMacros(t *testing.T) {
 		t.Fatalf("function should not be defined")
 	}
 
-	obj, ok := env.Get("mymacro")
+	obj, ok := env.Get("myMacro")
 	if !ok {
 		t.Fatalf("macro not in environment.")
 	}
