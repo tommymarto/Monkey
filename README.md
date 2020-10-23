@@ -4,8 +4,8 @@
 
 ![The official Monkey logo](https://interpreterbook.com/img/monkey_logo-d5171d15.png)
 
-A [Monkey](https://monkeylang.org/) language AST-walking interpreter and a bytecode-compiled version (running in a custom VM) in Go.
-Built following the book [Writing an Interpreter in Go](https://interpreterbook.com/) and [Writing a Compiler in Go](https://compilerbook.com/).
+A [Monkey](https://monkeylang.org/) language AST-walking interpreter and a bytecode-compiled version (running in a custom VM) written in Go.
+Built following the books [Writing an Interpreter in Go](https://interpreterbook.com/) and [Writing a Compiler in Go](https://compilerbook.com/).
 
 The project features:
 
@@ -96,6 +96,7 @@ A compiler and a VM has been added to the project. The shift from AST-walking to
 ### Try Monkey in the REPL
 
 Simply type `go run .\main.go` *
+
 You can choose the evaluation engine by specifying the flag `-engine=vm` for the compiled version or `-engine=eval` for the AST-walking version
 
 You can view executing timing for each line directly in the REPL and make some nice comparison benchmark between engines.
